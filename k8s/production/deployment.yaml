@@ -25,7 +25,6 @@ spec:
         args:
           - start
         env:
-        env:
           - name: PORT
             value: "5700"
           - name: ENVIRONMENT
