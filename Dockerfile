@@ -1,4 +1,4 @@
-FROM python:2.7-alpine
+FROM python:3.6-alpine
 MAINTAINER Sergio Gordillo sergio.gordillo@vizzuality.com
 
 ENV NAME adapter-earth-engine

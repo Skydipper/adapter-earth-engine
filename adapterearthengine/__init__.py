@@ -2,13 +2,12 @@ import os
 import json
 import logging
 import ee
-from oauth2client.service_account import ServiceAccountCredentials
-
+import CTRegisterMicroserviceFlask
 from flask import Flask
 from adapterearthengine.config import settings
 from adapterearthengine.routes.api.v1 import endpoints
 from adapterearthengine.utils.files import load_config_json
-import CTRegisterMicroserviceFlask
+
 
 # Logging
 logging.basicConfig(
@@ -18,15 +17,28 @@ logging.basicConfig(
 )
 
 # Initializing GEE
-gee = settings.get('gee')
-gee_credentials = ServiceAccountCredentials.from_p12_keyfile(
-    gee.get('service_account'),
-    gee.get('privatekey_file'),
-    scopes = ee.oauth.SCOPE
-)
+# gee = settings.get('gee')
+# gee_credentials = ServiceAccountCredentials.from_p12_keyfile(
+#     gee.get('service_account'),
+#     gee.get('privatekey_file'),
+#     scopes = ee.oauth.SCOPE
+# )
 
-ee.Initialize(gee_credentials)
-ee.data.setDeadline(60000)
+# ee.Initialize(gee_credentials)
+# ee.data.setDeadline(60000)
+
+gee = settings.get('gee')
+ee_user = gee.get('service_account')
+private_key_file = gee.get('privatekey_file')
+#json_creds = os.path.exists('privatekey.json')
+if private_key_file:
+    logging.info('Initilizing EE with privatekey.json credential file')
+    credentials = ee.ServiceAccountCredentials(ee_user, private_key_file)
+    ee.Initialize(credentials)
+    ee.data.setDeadline(60000)
+else:
+    raise ValueError("privatekey.json file not found. Unable to authenticate EE.")
+
 
 # Flask
 app = Flask(__name__)
