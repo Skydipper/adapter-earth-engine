@@ -11,6 +11,6 @@ settings={
     },
     'gee': {
         'service_account': 'skydipper@skydipper-196010.iam.gserviceaccount.com',
-        'privatekey_file': BASE_DIR + '/privatekey.json'
+        'privatekey_file': '/opt/adapter-earth-engine/adapterearthengine/privatekey.json'
     }
 }
