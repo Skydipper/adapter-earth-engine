@@ -67,28 +67,33 @@ CTRegisterMicroserviceFlask.register(
 @app.errorhandler(403)
 def forbidden(e):
     logging.error('Forbidden')
-    return error(status=403, detail='Forbidden')
+    return 'Forbidden', 403
+    #return error(status=403, detail='Forbidden')
 
 
 @app.errorhandler(404)
 def page_not_found(e):
     logging.error('Not Found')
-    return error(status=404, detail='Not Found')
+    return 'Not found', 404
+    #return error(status=404, detail='Not Found')
 
 
 @app.errorhandler(405)
 def method_not_allowed(e):
     logging.error('Method Not Allowed')
-    return error(status=405, detail='Method Not Allowed')
+    return 'Method Not Allowd', 405
+    #return error(status=405, detail='Method Not Allowed')
 
 
 @app.errorhandler(410)
 def gone(e):
     logging.error('Gone')
-    return error(status=410, detail='Gone')
+    return 'Gone', 410
+    #return error(status=410, detail='Gone')
 
 
 @app.errorhandler(500)
 def internal_server_error(e):
     logging.error('Internal Server Error')
-    return error(status=500, detail='Internal Server Error')
+    return 'Internal Server Error', 500
+    #return error(status=500, detail='Internal Server Error')
