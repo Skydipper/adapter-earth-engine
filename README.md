@@ -1,6 +1,6 @@
 # Google Earth Engine Adapter Microservice
 
-This repository implements the Google Earth Engine Adapter services that are available in the Resource Watch API.
+This repository implements the Google Earth Engine Adapter services that are available in the Skydipper API.
 
 If you are looking for the API Doc (Info and Usage) please go to the next link:
 [View the documentation for this
@@ -32,10 +32,10 @@ POST: /dataset -> payload:
 ### Example (copy&paste)
 
 ```
-POST: https://staging-api.globalforestwatch.org/dataset -> payload:
+POST: https://api.skydipper.com/dataset -> payload:
 {
 	"dataset": {
-		"application": ["rw"],
+		"application": ["skydipper"],
 		"name": "Data about whatever",
 		"connectorType": "rest",
 		"provider": "gee",
@@ -57,7 +57,7 @@ GET: /fields/:dataset
 Example (copy&paste)
 
 ```
-GET: https://staging-api.globalforestwatch.org/fields/68353d61-0f47-4836-9699-72e008cd9f5f
+GET: https://api.skydipper.com/fields/68353d61-0f47-4836-9699-72e008cd9f5f
 ```
 
 ### Query
@@ -71,7 +71,7 @@ GET: /query/:dataset?sql=<slq_query>
 Example (copy&paste)
 
 ```
-GET: https://staging-api.globalforestwatch.org/query/68353d61-0f47-4836-9699-72e008cd9f5f?sql=select * from ft:1qpKIcYQMBsXLA9RLWCaV9D0Hus2cMQHhI-ViKHo where width > 100
+GET: https://api.skydipper.com/query/68353d61-0f47-4836-9699-72e008cd9f5f?sql=select * from ft:1qpKIcYQMBsXLA9RLWCaV9D0Hus2cMQHhI-ViKHo where width > 100
 ```
 
 ### Download
@@ -85,5 +85,5 @@ GET: /download/:dataset?sql=<slq_query>
 Example (copy&paste)
 
 ```
-GET: https://staging-api.globalforestwatch.org/download/68353d61-0f47-4836-9699-72e008cd9f5f?sql=select * from ft:1qpKIcYQMBsXLA9RLWCaV9D0Hus2cMQHhI-ViKHo where width > 100
+GET: https://api.skydipper.com/download/68353d61-0f47-4836-9699-72e008cd9f5f?sql=select * from ft:1qpKIcYQMBsXLA9RLWCaV9D0Hus2cMQHhI-ViKHo where width > 100
 ```
