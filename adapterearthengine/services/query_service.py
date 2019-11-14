@@ -3,7 +3,6 @@ import re
 
 from CTRegisterMicroserviceFlask import request_to_microservice
 
-from adapterearthengine.responders import QueryResponder
 from adapterearthengine.errors import SqlFormatError
 
 
@@ -20,6 +19,7 @@ def convert(query, query_type='sql'):
         endpoint = 'fs2SQL'
 
     result = endpoint+query
+    logging.info(f'[QUERY SERVICE - convert]: {result}')
 
     try:
         config = {
@@ -27,18 +27,13 @@ def convert(query, query_type='sql'):
             'method': 'GET'
         }
         response = request_to_microservice(config)
+        return response
     except Exception as error:
         raise error
 
     if response.get('errors'):
         errors = response.get('errors')
         raise SqlFormatError(message=errors[0].get('detail'))
-
-    query = QueryResponder().deserialize(response)
-    s_query = query.get('attributes', {}).get('query')
-    json_sql = query.get('attributes', {}).get('jsonSql')
-
-    return s_query, json_sql
 
 
 def quote_table(query, type='sql'):
@@ -49,26 +44,22 @@ def quote_table(query, type='sql'):
     return query
 
 
-def get_geojson(json_sql):
+def get_geojson(geostore):
 
-    where = json_sql.get('where', None)
-    if where:
-        firstnode = where
+    try:
+        config = {
+            'uri': f'/geostore/{geostore}',
+            'method': 'GET'
+        }
+        response = request_to_microservice(config)
+        return response.get('data').get('attributes').get('geojson')
+    except Exception as error:
+        raise error
 
-    def check_node(node):
-        if node.get('type') == 'function' and node.get('value') == 'ST_INTERSECTS':
-            st_intersects_arguments = node.get('arguments')[0]
-            if st_intersects_arguments.get('type') == 'function' and st_intersects_arguments.get('value') == 'ST_SetSRID':
-                st_setsrid_arguments = st_intersects_arguments.get('arguments')[0]
-                if st_setsrid_arguments.get('type') == 'function' and st_setsrid_arguments.get('value') == 'ST_GeomFromGeoJSON':
-                    st_geomfromgeojson_arguments = st_setsrid_arguments.get('arguments')[0]
-                    return st_geomfromgeojson_arguments
-        else:
-            return check_node(node.get('arguments'))
-
-    geojson = check_node(firstnode)
-    geojson = geojson.get('value')
-    return geojson
+    if response.get('errors'):
+        errors = response.get('errors')
+        raise SqlFormatError(message=errors[0].get('detail'))
+    
 
 
 def get_type(table_name):
