@@ -10,7 +10,7 @@ SETTINGS = {
         'port': 5700
     },
     'gee': {
-        'service_account': '390573081381-lm51tabsc8q8b33ik497hc66qcmbj11d@developer.gserviceaccount.com',
-        'privatekey_file': BASE_DIR + '/privatekey.pem'
+        'service_account': 'skydipper@skydipper-196010.iam.gserviceaccount.com',
+        'privatekey_file': '/opt/adapter-earth-engine/privatekey.json'
     }
 }
