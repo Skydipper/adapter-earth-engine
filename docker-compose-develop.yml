@@ -16,3 +16,5 @@ develop:
   volumes:
     - ./adapterearthengine:/opt/adapter-earth-engine/adapterearthengine
   restart: always
+  extra_hosts:
+    - "mymachine:$MYMACHINE"
