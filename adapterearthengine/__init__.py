@@ -19,7 +19,7 @@ logging.basicConfig(
 
 # Initializing GEE
 
-gee = settings.get('gee')
+gee = SETTINGS.get('gee')
 ee_user = gee.get('service_account')
 logging.debug(f"ee_user: {ee_user}")
 private_key_file = gee.get('privatekey_file')
