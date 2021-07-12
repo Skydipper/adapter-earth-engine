@@ -1,9 +1,8 @@
-pycrypto==2.6.1
 sql2gee==0.3.0
 Flask==1.0.3
 pycrypto==2.6.1
-earthengine-api==0.1.178
-google-api-python-client==1.7.3
+earthengine-api==0.1.272
+google-api-python-client==1.12.8
 CTRegisterMicroserviceFlask==0.4.0
 requests==2.12.4
 hyp==0.6.0
