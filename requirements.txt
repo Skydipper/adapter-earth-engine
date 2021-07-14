@@ -5,7 +5,7 @@ pycrypto==2.6.1
 earthengine-api==0.1.236
 google-api-python-client==1.12.8
 CTRegisterMicroserviceFlask==0.4.0
-requests==2.18.0
+requests==2.20.0
 hyp==0.6.0
 marshmallow==2.11.1
 oauth2client==3.0.0
