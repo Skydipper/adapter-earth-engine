@@ -7,5 +7,5 @@ google-api-python-client==1.12.8
 CTRegisterMicroserviceFlask==0.4.0
 requests==2.18.0
 hyp==0.6.0
-marshmallow==2.11.1
+marshmallow==2.15.1
 oauth2client==3.0.0
