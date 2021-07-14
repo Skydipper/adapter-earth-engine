@@ -2,7 +2,7 @@ from adapterearthengine.utils.files import BASE_DIR
 
 SETTINGS = {
     'logging': {
-        'level': 'WARN'
+        'level': 'DEBUG'
     },
     'service': {
         'name': 'Earth Engine Adapter',
