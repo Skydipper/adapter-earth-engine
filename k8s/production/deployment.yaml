@@ -57,6 +57,11 @@ spec:
                 secretKeyRef:
                   name: mssecrets
                   key: EE_PRIVATE_KEY
+          - name: EE_ACCOUNT
+            valueFrom:
+                secretKeyRef:
+                  name: mssecrets
+                  key: EE_ACCOUNT
 
         ports:
           - containerPort: 5700
