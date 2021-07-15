@@ -1,6 +1,7 @@
 import os
 import json
 import logging
+import base64
 import ee
 import CTRegisterMicroserviceFlask
 from flask import Flask
@@ -20,7 +21,7 @@ logging.basicConfig(
 # Initializing GEE
 
 EE_ACCOUNT = os.getenv('EE_ACCOUNT')
-EE_PRIVATE_KEY_FILE = os.getenv('EE_PRIVATE_KEY')
+EE_PRIVATE_KEY_FILE = base64.b64decode(os.getenv('EE_PRIVATE_KEY'))
 logging.debug(f"ee_user: {EE_ACCOUNT}")
 gee_credentials = ee.ServiceAccountCredentials(EE_ACCOUNT, key_data=EE_PRIVATE_KEY_FILE)
 ee.Initialize(gee_credentials)
